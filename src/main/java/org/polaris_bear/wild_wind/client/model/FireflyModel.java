@@ -1,16 +1,6 @@
 package org.polaris_bear.wild_wind.client.model;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.HierarchicalModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
-import org.polaris_bear.wild_wind.WildWindMod;
-import org.polaris_bear.wild_wind.client.animations.FireflyAnimation;
 import org.polaris_bear.wild_wind.common.entity.Firefly;
 import org.polaris_bear.wild_wind.util.Helpers;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
@@ -26,7 +16,7 @@ public class FireflyModel extends GeoModel<Firefly> {
      */
     @Override
     public ResourceLocation getModelResource(Firefly animatable) {
-        return Helpers.location("models/entity/firefly.json");
+        return Helpers.location("geo/entity/firefly.geo.json");
     }
 
     /**
