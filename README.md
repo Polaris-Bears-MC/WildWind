@@ -5,6 +5,38 @@ A Minecraft Mod for Vanilla Expandability
 
 
 ```java
+@AutoConfig(modid = WildWindMod.MOD_ID)
+@Push("wild-wind-common")
+@Note({
+        "Wild wind common ->",
+        "\tfirefly age?"
+})
+public class TutorialConfig {
+    @org.polaris2023.annotation.config.Note("firefly age")
+    @DefineIntRange(defaultValue = 24000, min = 2000, max = 24000)
+    public static int FIREFLY_AGE;
+    
+    @org.polaris2023.annotation.config.SubConfig
+    public static class SubConfig {
+        @DefineIntRange(defaultValue = 80, min = 0, max = 65536)
+        public static int OVERWORLD_BIOMES_WEIGHT;
+        @DefineIntRange(defaultValue = 80, min = 0, max = 65536)
+        public static int NETHER_BIOMES_WEIGHT;
+    }
+}
+```
+
+### Currently only applies to
+    int
+    enum
+    string
+    float
+    double
+    short
+    boolean
+    long
+
+```java
 @org.polaris2023.annotation.modelgen.BasicItem
 private static final Object o;
 @org.polaris2023.annotation.modelgen.SpawnEggItem
