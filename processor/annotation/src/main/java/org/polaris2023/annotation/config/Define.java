@@ -8,6 +8,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.SOURCE)
 public @interface Define {
-    String value();
+    String value() default "";
     boolean defaultValue();
 }
