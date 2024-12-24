@@ -28,6 +28,14 @@ public class WildWindCommonConfig {
         public static int NETHER_BIOMES_WEIGHT;
     }
 
+    @SubConfig
+    @Push("sounds-config")
+    public static class SoundsConfig {
+        @Note("living tube sounds in inventory")
+        @Define(defaultValue = true)
+        public static boolean LIVING_TUBE_IN_INVENTORY;
+    }
+
 
 //    public enum TestEnum implements StringRepresentable {
 //        A,B,C,D,E;

@@ -3,6 +3,7 @@ package org.polaris2023.wild_wind.common.init;
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import org.polaris2023.annotation.language.I18n;
 import org.polaris2023.wild_wind.util.Helpers;
 
 import java.util.HashMap;
@@ -13,22 +14,39 @@ import java.util.function.Supplier;
 import static org.polaris2023.wild_wind.common.init.ModInitializer.SOUNDS;
 
 public enum ModSounds implements Supplier<SoundEvent> {
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_1,
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_2,
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_3,
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_4,
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_5,
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_6,
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_7,
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_8,
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_9,
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_10,
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_11,
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_12,
+    @I18n(en_us = "glare ambient", zh_cn = "怒目怪叫声", zh_tw = "怒目靈叫聲")
     GLARE_AMBIENT_13,
+    @I18n(en_us = "glare death", zh_cn = "怒目怪死亡", zh_tw = "怒目靈死亡")
     GLARE_DEATH_1,
+    @I18n(en_us = "glare death", zh_cn = "怒目怪死亡", zh_tw = "怒目靈死亡")
     GLARE_DEATH_2,
+    @I18n(en_us = "glare death", zh_cn = "怒目怪死亡", zh_tw = "怒目靈死亡")
     GLARE_DEATH_3,
+    @I18n(en_us = "magic flute", zh_cn = "魔笛音", zh_tw = "魔笛音")
     MAGIC_FLUTE
     ;
 
