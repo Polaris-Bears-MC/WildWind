@@ -6,6 +6,7 @@
   "mixins": [
     "AnimalMixin",
     "CowMixin",
+    "EggMixin",
     "GoatMixin"
   ],
   "minVersion": "0.8",

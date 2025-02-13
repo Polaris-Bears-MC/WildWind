@@ -91,6 +91,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         BlockModelBuilder concreteModel = models().cubeAll("concrete", CONCRETE[0]);
         simpleBlock(ModBlocks.CONCRETE.get(), concreteModel);
 
+
+
         // Glazed Terracotta
         VariantBlockStateBuilder glazedTerracottaStates = getVariantBuilder(ModBlocks.GLAZED_TERRACOTTA.get());
         for (Direction facing : Direction.Plane.HORIZONTAL) {

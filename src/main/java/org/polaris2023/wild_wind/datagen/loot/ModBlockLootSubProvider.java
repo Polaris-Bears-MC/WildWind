@@ -40,5 +40,7 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SALT_BLOCK.get());
         this.dropOther(ModBlocks.SALT_ORE.get(), ModItems.SALT.get());
         this.dropOther(ModBlocks.DEEPSLATE_SALT_ORE.get(), ModItems.SALT.get());
+        this.dropSelf(ModBlocks.DUCKWEED.get());
+        this.dropSelf(ModBlocks.SCULK_JAW.get());
     }
 }

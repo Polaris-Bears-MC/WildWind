@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.PacketUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ThrownEgg;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -37,15 +39,18 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
+import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.polaris2023.wild_wind.WildWindMod;
 import org.polaris2023.wild_wind.common.entity.Firefly;
 import org.polaris2023.wild_wind.common.init.*;
 import org.polaris2023.wild_wind.client.ModTranslateKey;
+import org.polaris2023.wild_wind.common.network.packets.EggShootPacket;
 import org.polaris2023.wild_wind.util.EnchantmentHelper;
 import org.polaris2023.wild_wind.util.RegistryUtil;
 import org.polaris2023.wild_wind.util.TeleportUtil;
@@ -110,6 +115,46 @@ public class WildWindGameEventHandler {
     public static void hurtEvent(LivingDamageEvent.Post event) {
         if (event.getEntity() instanceof Firefly firefly) {
             firefly.clearTicker();
+        }
+    }
+
+
+    @SubscribeEvent
+    public static void clickEventEmpty(PlayerInteractEvent.LeftClickEmpty event) {
+        ItemStack itemstack = event.getItemStack();
+        Player player = event.getEntity();
+        if (itemstack.is(Items.EGG)) {
+            PacketDistributor.sendToServer(new EggShootPacket(itemstack));
+            player.awardStat(Stats.ITEM_USED.get(itemstack.getItem()));
+            itemstack.consume(1, player);
+        }
+//        eggShoot(event.getItemStack(), event.getEntity(), event.getLevel());
+    }
+
+    @SubscribeEvent
+    public static void clickEventBlock(PlayerInteractEvent.LeftClickBlock event) {
+        eggShoot(event.getItemStack(), event.getEntity(), event.getLevel());
+    }
+
+    @SubscribeEvent
+    public static void attackEntity(AttackEntityEvent event) {
+        Player player = event.getEntity();
+        eggShoot(player.getMainHandItem(), player, player.level());
+    }
+
+    public static void eggShoot(ItemStack itemstack, Player player, Level level) {
+        if (itemstack.is(Items.EGG)) {
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
+            if (!level.isClientSide) {
+                ThrownEgg thrownegg = new ThrownEgg(level, player);
+                thrownegg.setItem(itemstack);
+                thrownegg.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
+                level.addFreshEntity(thrownegg);
+                System.out.println("test");
+            }
+
+            player.awardStat(Stats.ITEM_USED.get(itemstack.getItem()));
+            itemstack.consume(1, player);
         }
     }
 

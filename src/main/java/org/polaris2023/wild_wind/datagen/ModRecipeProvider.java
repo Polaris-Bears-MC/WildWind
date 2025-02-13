@@ -18,6 +18,8 @@ import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.polaris2023.wild_wind.common.init.ModBlocks;
 import org.polaris2023.wild_wind.common.init.ModItems;
+import org.polaris2023.wild_wind.common.init.items.ModNonFunctionItems;
+import org.polaris2023.wild_wind.common.init.items.foods.ModNonFunctionFoods;
 import org.polaris2023.wild_wind.datagen.custom.recipe.CookingPotRecipeBuilder;
 import org.polaris2023.wild_wind.util.Helpers;
 
@@ -60,11 +62,11 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     protected void addSmeltingRecipes() {
-        smeltingSmokingAndCampfire(ModItems.RAW_TROUT, RecipeCategory.FOOD, ModItems.COOKED_TROUT, 0.35F);
-        smeltingSmokingAndCampfire(ModItems.LIVING_TUBER, RecipeCategory.FOOD, ModItems.BAKED_LIVING_TUBER, 0.35F);
+        smeltingSmokingAndCampfire(ModNonFunctionFoods.RAW_TROUT.get(), RecipeCategory.FOOD, ModNonFunctionFoods.COOKED_TROUT.get(), 0.35F);
+        smeltingSmokingAndCampfire(ModItems.LIVING_TUBER, RecipeCategory.FOOD, ModNonFunctionFoods.BAKED_LIVING_TUBER.get(), 0.35F);
         smeltingSmokingAndCampfire(ModItems.DOUGH, RecipeCategory.FOOD, Items.BREAD, 0.35F);// input category result exp
-        smeltingSmokingAndCampfire(Items.CARROT, RecipeCategory.FOOD, ModItems.BAKED_CARROT, 0.35F);
-        smeltingSmokingAndCampfire(Items.BEETROOT, RecipeCategory.FOOD, ModItems.BAKED_BEETROOT, 0.35F);
+        smeltingSmokingAndCampfire(Items.CARROT, RecipeCategory.FOOD, ModNonFunctionFoods.BAKED_CARROT.get(), 0.35F);
+        smeltingSmokingAndCampfire(Items.BEETROOT, RecipeCategory.FOOD, ModNonFunctionFoods.BAKED_BEETROOT.get(), 0.35F);
         smeltingSmokingAndCampfire(Ingredient.of(Items.EGG, Items.TURTLE_EGG), RecipeCategory.FOOD, ModItems.COOKED_EGG, 0.35F);
 
         SimpleCookingRecipeBuilder smelting = smelting(Items.TERRACOTTA, RecipeCategory.BUILDING_BLOCKS, ModBlocks.GLAZED_TERRACOTTA.get(),0.35F);
@@ -164,12 +166,12 @@ public class ModRecipeProvider extends RecipeProvider {
     protected void addShapelessRecipe() {
 
         add(shapeless(RecipeCategory.FOOD, ModItems.FISH_CHOWDER, 1, fish_chowder -> {
-            unlockedBy(fish_chowder, ModItems.RAW_TROUT, Items.COD, Items.SALMON);
+            unlockedBy(fish_chowder, ModNonFunctionFoods.RAW_TROUT.get(), Items.COD, Items.SALMON);
             unlockedBy(fish_chowder, Items.BROWN_MUSHROOM, Items.RED_MUSHROOM);
             unlockedBy(fish_chowder, Items.KELP);
             unlockedBy(fish_chowder, Items.BOWL);
             fish_chowder
-                    .requires(Ingredient.of(Items.COD, Items.SALMON, ModItems.RAW_TROUT))
+                    .requires(Ingredient.of(Items.COD, Items.SALMON, ModNonFunctionFoods.RAW_TROUT.get()))
                     .requires(Items.KELP)
                     .requires(Ingredient.of(Items.BROWN_MUSHROOM, Items.RED_MUSHROOM))
                     .requires(Items.BOWL);
@@ -196,7 +198,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .requires(ModItems.CHEESE)
                     .requires(Items.BOWL);
         }));
-        add(shapeless(RecipeCategory.FOOD, ModItems.CHEESE_PUMPKIN_SOUP, 1, cheese_pumpkin_soup -> {
+        add(shapeless(RecipeCategory.FOOD, ModNonFunctionItems.CHEESE_PUMPKIN_SOUP.get(), 1, cheese_pumpkin_soup -> {
             unlockedBy(cheese_pumpkin_soup, ModItems.CHEESE);
             unlockedBy(cheese_pumpkin_soup, Items.PUMPKIN);
             unlockedBy(cheese_pumpkin_soup, Items.BOWL);
@@ -217,7 +219,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .requires(ModItems.FLOUR, 3)
                     .requires(Items.WATER_BUCKET);
         }));
-        add(shapeless(RecipeCategory.FOOD, ModItems.CANDY, 1, candy -> {
+        add(shapeless(RecipeCategory.FOOD, ModNonFunctionItems.CANDY.get(), 1, candy -> {
             unlockedBy(candy, Items.SUGAR);
             unlockedBy(candy, Items.HONEY_BOTTLE);
             unlockedBy(candy, Items.GLOW_BERRIES, Items.APPLE, Items.SWEET_BERRIES);
@@ -230,7 +232,7 @@ public class ModRecipeProvider extends RecipeProvider {
                                     new ItemStack(Items.APPLE),
                                     new ItemStack(Items.SWEET_BERRIES, 2)));
         }));
-        add(shapeless(RecipeCategory.FOOD, ModItems.BERRY_CAKE, 1, berry_cake -> {
+        add(shapeless(RecipeCategory.FOOD, ModNonFunctionItems.BERRY_CAKE.get(), 1, berry_cake -> {
             unlockedBy(berry_cake, Items.SWEET_BERRIES);
             unlockedBy(berry_cake, Items.GLOW_BERRIES);
             unlockedBy(berry_cake, Items.SUGAR);
@@ -241,7 +243,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .requires(Items.SUGAR)
                     .requires(Items.EGG);
         }));
-        add(shapeless(RecipeCategory.FOOD, ModItems.APPLE_CAKE, 1, apple_cake -> {
+        add(shapeless(RecipeCategory.FOOD, ModNonFunctionItems.APPLE_CAKE.get(), 1, apple_cake -> {
             unlockedBy(apple_cake, Items.APPLE);
             unlockedBy(apple_cake, Items.SUGAR);
             unlockedBy(apple_cake, Items.EGG);

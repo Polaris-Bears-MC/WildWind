@@ -192,7 +192,7 @@ public enum Codes {
                     return this;
                 }
             
-                private <T extends SpawnEggItem> %%classname%% spawnEggItem(DeferredHolder<Item, T> item) {
+                private <T extends SpawnEggItem> %%classname%% spawnEggItem(Supplier<T> item) {
                     MODELS.put(BuiltInRegistries.ITEM.getKey(item.get()).withPrefix("item/"), SPAWN_EGG);
                     return this;
                 }

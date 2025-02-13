@@ -170,15 +170,15 @@ public class ModInitializer {
         return ITEMS.registerItem(name, properties -> new BlockItem(block.get(), properties.food(supplier.get())));
     }
 
-    static DeferredItem<Item> simpleItem(String name) {
+    public static DeferredItem<Item> simpleItem(String name) {
         return ITEMS.registerSimpleItem(name);
     }
 
-    static DeferredItem<Item> item(String name, Function<Item.Properties, Item> toItemFunction) {
+    public static DeferredItem<Item> item(String name, Function<Item.Properties, Item> toItemFunction) {
         return ITEMS.registerItem(name, toItemFunction);
     }
 
-    static DeferredItem<Item> simpleItem(String name, Consumer<Item.Properties> consumer) {
+    public static DeferredItem<Item> simpleItem(String name, Consumer<Item.Properties> consumer) {
         return item(name, properties -> {
             consumer.accept(properties);
             return new Item(properties);
@@ -189,7 +189,7 @@ public class ModInitializer {
         return simpleItem(name, properties -> properties.food(food.get()));
     }
 
-    static DeferredItem<Item> simpleItem(String name, Consumer<Item.Properties> consumer, Supplier<FoodProperties> food) {
+    public static DeferredItem<Item> simpleItem(String name, Consumer<Item.Properties> consumer, Supplier<FoodProperties> food) {
         return simpleItem(name, properties -> consumer.accept(properties.food(food.get())));
     }
 
@@ -197,11 +197,11 @@ public class ModInitializer {
         return ITEMS.registerItem(name, item);
     }
 
-    static <T extends Item> DeferredItem<T> register(String name, Supplier<T> item) {
+    public static <T extends Item> DeferredItem<T> register(String name, Supplier<T> item) {
         return ITEMS.register(name, item);
     }
 
-    static DeferredItem<DeferredSpawnEggItem> register(String name,
+    public static DeferredItem<DeferredSpawnEggItem> register(String name,
                                                        Supplier<? extends EntityType<? extends Mob>> type,
                                                        int backgroundColor,
                                                        int highlightColor,
@@ -212,7 +212,7 @@ public class ModInitializer {
         });
     }
 
-    static DeferredItem<DeferredSpawnEggItem> register(String name,
+    public static DeferredItem<DeferredSpawnEggItem> register(String name,
                                                        Supplier<? extends EntityType<? extends Mob>> type,
                                                        int backgroundColor,
                                                        int highlightColor) {

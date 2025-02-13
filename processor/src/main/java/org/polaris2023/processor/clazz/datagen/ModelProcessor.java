@@ -12,6 +12,7 @@ import org.polaris2023.annotation.modelgen.item.SpawnEggItem;
 import org.polaris2023.annotation.modelgen.other.*;
 import org.polaris2023.processor.clazz.ClassProcessor;
 
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 import java.lang.Override;
@@ -34,11 +35,23 @@ public class ModelProcessor extends ClassProcessor {
 
     @Override
     public void fieldDef(VariableElement variableElement, TypeElement typeElement) {
+        BasicItem typeBasicItem = typeElement.getAnnotation(BasicItem.class);
         BasicItem basicItem = variableElement.getAnnotation(BasicItem.class);
+        BasicBlockItem basicBlockItem = variableElement.getAnnotation(BasicBlockItem.class);
+        CubeAll cube = variableElement.getAnnotation(CubeAll.class);
+        Stairs stairs = variableElement.getAnnotation(Stairs.class);
+        Slab slab = variableElement.getAnnotation(Slab.class);
+        Button button = variableElement.getAnnotation(Button.class);
+        SpawnEggItem spawnEggItem = variableElement.getAnnotation(SpawnEggItem.class);
+        ParentItem parentItem = variableElement.getAnnotation(ParentItem.class);
+        if (typeBasicItem != null && typeBasicItem.used() && variableElement.getModifiers().contains(Modifier.STATIC) &&
+                basicItem== null && basicBlockItem == null && cube == null && stairs == null && slab == null && button == null && spawnEggItem == null && parentItem == null) {
+
+            basicSet(typeElement.getQualifiedName() + "." + variableElement.getSimpleName(), typeBasicItem, typeBasicItem.value(), true, "");
+        }
         if (basicItem != null && basicItem.used()) {
             basicSet(typeElement.getQualifiedName() + "." + variableElement.getSimpleName(), basicItem, basicItem.value(), true, "");
         }
-        BasicBlockItem basicBlockItem = variableElement.getAnnotation(BasicBlockItem.class);
         if (basicBlockItem != null) {
             check();
             MODEL.append("\n\t\t")
@@ -48,7 +61,6 @@ public class ModelProcessor extends ClassProcessor {
                     .append(variableElement.getSimpleName())
                     .append(")");
         }
-        CubeAll cube = variableElement.getAnnotation(CubeAll.class);
         if (cube != null) {
             check();
             MODEL.append("\n\t\t")
@@ -58,7 +70,6 @@ public class ModelProcessor extends ClassProcessor {
                     .append(variableElement.getSimpleName())
                     .append(")");
         }
-        Stairs stairs = variableElement.getAnnotation(Stairs.class);
         if (stairs != null) {
             check();
             MODEL.append("\n\t\t")
@@ -74,7 +85,6 @@ public class ModelProcessor extends ClassProcessor {
                     .append(stairs.top())
                     .append("\")");
         }
-        Slab slab = variableElement.getAnnotation(Slab.class);
         if (slab != null) {
             check();
             MODEL.append("\n\t\t")
@@ -90,7 +100,6 @@ public class ModelProcessor extends ClassProcessor {
                     .append(slab.top())
                     .append(")");
         }
-        Button button = variableElement.getAnnotation(Button.class);
         if (button != null) {
             check();
             MODEL.append("\n\t\t")
@@ -102,7 +111,6 @@ public class ModelProcessor extends ClassProcessor {
                     .append(button.texture())
                     .append("\")");
         }
-        SpawnEggItem spawnEggItem = variableElement.getAnnotation(SpawnEggItem.class);
         if (spawnEggItem != null) {
             check();
             MODEL.append("\n\t\t")
@@ -112,7 +120,6 @@ public class ModelProcessor extends ClassProcessor {
                     .append(variableElement.getSimpleName())
                     .append(")");
         }
-        ParentItem parentItem = variableElement.getAnnotation(ParentItem.class);
         if (parentItem != null) {
             check();
             MODEL.append("\n\t\t")

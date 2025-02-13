@@ -16,6 +16,7 @@ import org.polaris2023.wild_wind.common.init.ModBlocks;
 public class CookingPotBlockEntity extends BlockEntity implements MenuProvider {
     int i = 0;
 
+
     public CookingPotBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlocks.COOKING_POT_TILE.get(), pos, blockState);
 

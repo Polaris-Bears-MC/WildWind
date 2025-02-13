@@ -3,17 +3,17 @@ package org.polaris2023.wild_wind.datagen.tag;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import org.polaris2023.wild_wind.WildWindMod;
 import org.polaris2023.wild_wind.common.init.ModItems;
+import org.polaris2023.wild_wind.common.init.items.ModNonFunctionItems;
+import org.polaris2023.wild_wind.common.init.items.foods.ModNonFunctionFoods;
 import org.polaris2023.wild_wind.common.init.tags.ModItemTags;
 
 import java.util.Arrays;
@@ -41,13 +41,13 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         );
         IntrinsicTagAppender<Item> vegetable_food = tag(ModItemTags.VEGETABLE_FOOD);
         add(vegetable_food,
-                Items.CARROT, ModItems.BAKED_CARROT, Items.GOLDEN_CARROT,
-                Items.BEETROOT, ModItems.BAKED_BEETROOT,
+                Items.CARROT, ModNonFunctionFoods.BAKED_CARROT.get(), Items.GOLDEN_CARROT,
+                Items.BEETROOT, ModNonFunctionFoods.BAKED_BEETROOT.get(),
                 Items.POTATO, Items.BAKED_POTATO,
                 ModItems.PUMPKIN_SLICE, ModItems.BAKED_PUMPKIN_SLICE,
                 Items.BROWN_MUSHROOM, Items.RED_MUSHROOM, ModItems.BAKED_MUSHROOM,
                 Items.CRIMSON_FUNGUS, Items.WARPED_FUNGUS,
-                ModItems.LIVING_TUBER,ModItems.BAKED_LIVING_TUBER
+                ModItems.LIVING_TUBER, ModNonFunctionFoods.BAKED_LIVING_TUBER.get()
         );
         IntrinsicTagAppender<Item> fruit_food = tag(ModItemTags.FRUIT_FOOD);
         add(fruit_food,
@@ -69,7 +69,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         add(fish_food,
                 Items.COD, Items.COOKED_COD,
                 Items.SALMON, Items.COOKED_SALMON,
-                ModItems.RAW_TROUT, ModItems.COOKED_TROUT,
+                ModNonFunctionFoods.RAW_TROUT.get(), ModNonFunctionFoods.COOKED_TROUT.get(),
                 Items.KELP, Items.DRIED_KELP
         );
         IntrinsicTagAppender<Item> monster_food = tag(ModItemTags.MONSTER_FOOD);

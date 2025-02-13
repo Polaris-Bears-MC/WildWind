@@ -15,7 +15,8 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 import org.polaris2023.wild_wind.common.init.ModEntities;
 import org.polaris2023.wild_wind.common.init.ModInitializer;
-import org.polaris2023.wild_wind.common.init.ModItems;
+import org.polaris2023.wild_wind.common.init.items.ModNonFunctionItems;
+import org.polaris2023.wild_wind.common.init.items.foods.ModNonFunctionFoods;
 
 import java.util.stream.Stream;
 
@@ -36,7 +37,7 @@ public class ModEntityLootSubProvider extends EntityLootSubProvider {
         add(ModEntities.FIREFLY.get(), LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0f))
-                        .add(LootItem.lootTableItem(ModItems.GLOW_POWDER))
+                        .add(LootItem.lootTableItem(ModNonFunctionItems.GLOW_POWDER.get()))
                         .apply(SetItemCountFunction
                                 .setCount(UniformGenerator.between(0.0f, 1.0f)))
                         .apply(EnchantedCountIncreaseFunction
@@ -47,7 +48,7 @@ public class ModEntityLootSubProvider extends EntityLootSubProvider {
         add(ModEntities.TROUT.get(), LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(ModItems.RAW_TROUT)
+                        .add(LootItem.lootTableItem(ModNonFunctionFoods.RAW_TROUT.get())
                                 .apply(SmeltItemFunction.smelted().when(this.shouldSmeltLoot())))));
         add(ModEntities.PIRANHA.get(), LootTable.lootTable());
     }
